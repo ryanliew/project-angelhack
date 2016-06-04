@@ -9,5 +9,8 @@ public class Constants {
         return "ddMMyy H:m";
     }
 
-
+    public static String googleMapAPIKey()
+    {
+        return "AIzaSyCCtV6CGtlIGIQ4fLu2gOrJI_pRmPyPEkA";
+    }
 }

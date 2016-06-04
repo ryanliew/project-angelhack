@@ -1,5 +1,7 @@
 package anglehack.grabngo;
 
+import com.directions.route.Routing;
+
 import java.util.Date;
 
 /**
@@ -152,5 +154,11 @@ public class Request {
 
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
+    }
+
+    public void calculatePrice() {
+        String request = "https://maps.googleapis.com/maps/api/directions/json?origin="+ this.origin +"&destination="+ this.destination +"&key=" + Constants.googleMapAPIKey();
+//        Routing routing = new Routing.Builder()
+//                            .travelMode()
     }
 }
