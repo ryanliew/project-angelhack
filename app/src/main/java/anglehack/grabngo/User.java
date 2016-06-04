@@ -6,11 +6,12 @@ package anglehack.grabngo;
 public class User {
     private String username, password, name, ic, email, contactnumber, address, carPlate, licenseNo;
     private int status, carType;
+    private boolean isDriver;
     private double credit;
 
     public User(){}
 
-    public User(String username, String password, String name, String ic, String email, String contactnumber, String address, String carPlate, String licenseNo, int status, int carType, double credit) {
+    public User(String username, String password, String name, String ic, String email, String contactnumber, String address, String carPlate, String licenseNo, int status, int carType, boolean isDriver, double credit) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -22,6 +23,7 @@ public class User {
         this.licenseNo = licenseNo;
         this.status = status;
         this.carType = carType;
+        this.isDriver = isDriver;
         this.credit = credit;
     }
 
@@ -119,5 +121,13 @@ public class User {
 
     public void setCredit(double credit) {
         this.credit = credit;
+    }
+
+    public boolean isDriver() {
+        return isDriver;
+    }
+
+    public void setDriver(boolean driver) {
+        isDriver = driver;
     }
 }
