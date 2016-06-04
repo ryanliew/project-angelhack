@@ -156,9 +156,14 @@ public class Request {
         this.paymentId = paymentId;
     }
 
-    public void calculatePrice() {
-        String request = "https://maps.googleapis.com/maps/api/directions/json?origin="+ this.origin +"&destination="+ this.destination +"&key=" + Constants.googleMapAPIKey();
-//        Routing routing = new Routing.Builder()
-//                            .travelMode()
+    public static double calculatePrice(int distance) {
+        double price = ( distance / 1000 ) * Constants.ratePerKm();
+
+        return price;
+    }
+
+    public static String calculateEstimatedArrival()
+    {
+        return "5 hours";
     }
 }
