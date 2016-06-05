@@ -152,6 +152,9 @@ public class Database {
         Log.d(TAG, "Changed request: " + requests.indexOf(request) );
         packageRef.child(String.format("%d", requests.indexOf(request))).setValue(request);
     }
-
+    public int getUserId(User user)
+    {
+        return users.indexOf(user);
+    }
 
 }

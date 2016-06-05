@@ -5,9 +5,13 @@
     tools:context="anglehack.grabngo.PendingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    <ExpandableListView
+        android:id="@+id/expandableListView"
         android:layout_height="match_parent"
-        android:text="hi, tommy" />
+        android:layout_width="match_parent"
+        android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:fontFamily="Arial Black"
+        android:dividerHeight="0.5dp" />
 
 </FrameLayout>
