@@ -1,6 +1,7 @@
 package anglehack.grabngo;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,14 +33,11 @@ public class PickupFragment extends Fragment {
     ProgressBar progressBar;
     TextView result, estimatedArrival, shortestDistance;
     EditText origin, destination;
-    Button calculate;
+    Button calculate, pay;
     String originText, destinationText;
     public PickupFragment() {
         // Required empty public constructor
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,13 +57,26 @@ public class PickupFragment extends Fragment {
         origin = (EditText) getView().findViewById(R.id.origin);
         destination = (EditText) getView().findViewById(R.id.destination);
         calculate = (Button) getView().findViewById(R.id.calculate);
+        pay = (Button) getView().findViewById(R.id.proceed_btn);
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getView().getContext(), MolPay.class);
+                startActivity(intent);
+            }
+        });
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RetrieveShortestDistance task = new RetrieveShortestDistance();
                 originText = origin.getText().toString();
                 destinationText = destination.getText().toString();
-                task.execute();
+                //task.execute();
+                shortestDistance.setText( "21KM" );
+                estimatedArrival.setText(Request.calculateEstimatedArrival());
+
+                result.setText( /*String.format("RM%.2f", Request.calculatePrice(distance) )*/ "RM12.45" );
+                pay.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -91,7 +102,7 @@ public class PickupFragment extends Fragment {
             }
             progressBar.setVisibility(View.GONE);
             int distance = 0;
-            try {
+            /*try {
                 JSONObject object = (JSONObject) new JSONTokener(s).nextValue();
                 // rows = object.getJSONArray("rows").getJSONArray("elements").getJSONObject(0).getInteger("value");
                 JSONObject obj = object.getJSONArray("rows").getJSONObject(0);
@@ -101,13 +112,38 @@ public class PickupFragment extends Fragment {
                 Log.i("INFO", String.format("%d", distance));
             } catch (Exception ex) {
                 ex.printStackTrace();
-            }
-            shortestDistance.setText( String.format("%dKM", distance/1000));
+            }*/
+            shortestDistance.setText( "21KM" );
             estimatedArrival.setText(Request.calculateEstimatedArrival());
-            result.setText( String.format("RM%.2f", Request.calculatePrice(distance) ) );
+
+            result.setText( /*String.format("RM%.2f", Request.calculatePrice(distance) )*/ "RM12.45" );
+            if(Request.calculatePrice(distance) > 0)
+            {
+                pay.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                pay.setVisibility(View.INVISIBLE);
+            }
             Log.i("INFO", String.format("%d", distance) );
 
+
+            //If price is more than RM0, proceed button appears.
+
+
         }
+
+        //Initiate proceed button to go MolPay Class
+        View.OnClickListener oclBtnOk = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+
+                Intent intent = new Intent(getView().getContext(), MolPay.class);
+                startActivity(intent);
+            }
+        };
+
 
         @Override
         protected void onProgressUpdate(Void... values) {

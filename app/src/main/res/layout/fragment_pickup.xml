@@ -22,6 +22,7 @@
         android:layout_height="45dp"
         android:layout_marginLeft="45dp"
         android:id="@+id/origin"
+        android:text="Puchong"
         android:layout_toRightOf="@id/origin_title"/>
 
     <TextView
@@ -37,6 +38,7 @@
         android:layout_height="45dp"
         android:layout_marginLeft="15dp"
         android:id="@+id/destination"
+        android:text="Bangsar"
         android:layout_below="@id/origin"
         android:layout_toRightOf="@id/destination_title"/>
 
@@ -86,7 +88,6 @@
         android:layout_below="@id/distance" />
 
 
-
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,5 +97,16 @@
         android:layout_centerVertical="true"
         android:visibility="gone"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proceed"
+        android:id="@+id/proceed_btn"
+        android:layout_below="@id/destination"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="210dp"
+        android:visibility="invisible"
+        android:onClick="proceed_click"/>
 
 </RelativeLayout>
