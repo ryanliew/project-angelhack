@@ -1,5 +1,6 @@
 package anglehack.grabngo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,7 +12,7 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    Database newDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +20,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        newDatabase = Database.getInstance();
-        newDatabase.setContext( this );
+
+        Database.getInstance().getUsers();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //final Intent openMap = new Intent( this, MapsActivity.class);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = newDatabase.getUsers().get(2);
-                user.setAddress("Change address test");
-                newDatabase.updateUser(user);
+                //User user = newDatabase.getUsers().get(2);
+                //user.setAddress("Change address test");
+                //newDatabase.updateUser(user);
                 //newDatabase.saveUser( new User() );
                 //newDatabase.saveRequest( new Request() );
+                //startActivity(openMap);
                 Snackbar.make(view, "Updated dummy data", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

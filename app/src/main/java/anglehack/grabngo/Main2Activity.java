@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class Main2Activity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -45,6 +47,9 @@ public class Main2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.customerid);
+        nav_user.setText("1");
     }
 
     @Override
@@ -93,6 +98,7 @@ public class Main2Activity extends AppCompatActivity
             History_Fragment history_fragment = new  History_Fragment();
             FragmentManager manager = getSupportFragmentManager();
             manager.beginTransaction().replace(R.id.relativelayout_for_fragment,history_fragment).commit();
+
         } else if (id == R.id.nav_slideshow) {
             PendingFragment pendingfragment = new  PendingFragment();
             FragmentManager manager = getSupportFragmentManager();
