@@ -26,7 +26,7 @@ public class MolPay extends AppCompatActivity {
         if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
             Log.d(MOLPayActivity.MOLPAY, "MOLPay result 1234 = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
             TextView tw = (TextView)findViewById(R.id.molPayStatus);
-            tw.setText(data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
+            tw.setText("Your payment is successful. Thank you for using MOLPay.");
         }
 
     }
@@ -62,7 +62,7 @@ public class MolPay extends AppCompatActivity {
         paymentDetails.put("mp_bill_description" , "test desc");
         paymentDetails.put("mp_bill_name" , "test name");
         paymentDetails.put("mp_bill_email" , "test@mail.com");
-        paymentDetails.put("mp_bill_mobile" , "01293120938");
+        paymentDetails.put("mp_bill_mobile" , "0163218880");
         paymentDetails.put("domain_mode", "1");
 
         Intent intent = new Intent(MolPay.this, MOLPayActivity.class);
