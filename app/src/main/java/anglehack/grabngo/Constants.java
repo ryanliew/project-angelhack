@@ -13,4 +13,9 @@ public class Constants {
     {
         return "AIzaSyCCtV6CGtlIGIQ4fLu2gOrJI_pRmPyPEkA";
     }
+
+    public static double ratePerKm()
+    {
+        return 0.8;
+    }
 }
