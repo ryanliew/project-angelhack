@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     tools:context="anglehack.grabngo.PickupFragment"
     android:paddingLeft="15dp"
-    android:paddingTop="15dp"
-    android:background="@drawable/map_bg">
+    android:paddingTop="15dp">
 
     <!-- TODO: Update blank fragment layout -->
 
