@@ -45,7 +45,8 @@
                 android:text="Name"
                 android:id="@+id/lblName"
                 android:layout_row="2"
-                android:layout_column="0" />
+                android:layout_column="0"
+                />
 
             <EditText
                 android:layout_width="227dp"
@@ -53,7 +54,8 @@
                 android:id="@+id/txtName"
                 android:layout_row="2"
                 android:layout_column="3"
-                android:text="testuser1" />
+                android:text="testuser1"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
                 android:id="@+id/txtIC"
                 android:layout_row="4"
                 android:layout_column="3"
-                android:text="820212619593" />
+                android:text="820212619593"
+                android:enabled="false"/>
 
             <TextView
                 android:layout_width="wrap_content"

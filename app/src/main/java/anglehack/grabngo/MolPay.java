@@ -11,6 +11,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.molpay.molpayxdk.MOLPayActivity;
 import com.molpay.molpayxdk.MOLPayService;
 import java.util.HashMap;
@@ -25,8 +27,8 @@ public class MolPay extends AppCompatActivity {
 
         if (requestCode == MOLPayActivity.MOLPayXDK && resultCode == RESULT_OK){
             Log.d(MOLPayActivity.MOLPAY, "MOLPay result 1234 = " + data.getStringExtra(MOLPayActivity.MOLPayTransactionResult));
-            TextView tw = (TextView)findViewById(R.id.molPayStatus);
-            tw.setText("Your payment is successful. Thank you for using MOLPay.");
+            Toast.makeText(MolPay.this, "Payment success", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
     }

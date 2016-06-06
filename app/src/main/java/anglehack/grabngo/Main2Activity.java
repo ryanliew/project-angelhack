@@ -26,6 +26,8 @@ public class Main2Activity extends AppCompatActivity
         PickupFragment pickup_fragment = new PickupFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.relativelayout_for_fragment,pickup_fragment).commit();
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setVisibility(View.INVISIBLE);
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

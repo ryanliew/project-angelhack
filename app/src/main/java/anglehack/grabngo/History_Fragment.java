@@ -124,8 +124,9 @@ public class History_Fragment extends Fragment {
             TextView textView = new TextView(History_Fragment.this.getActivity());
             textView.setText(getGroup(i).toString());
             textView.setBackgroundColor(0xFF303F9F);
-            textView.setHeight(250);
-            textView.setTextSize(20);
+            textView.setHeight(200);
+            textView.setTextSize(18);
+            textView.setPadding(50, 0, 0, 0);
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setTextColor(0xFFFFFFFF);
 
@@ -136,8 +137,8 @@ public class History_Fragment extends Fragment {
         public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
             TextView textView = new TextView(History_Fragment.this.getActivity());
             textView.setText(getChild(i, i1).toString());
-            textView.setHeight(250);
-            textView.setTextSize(20);
+            textView.setHeight(100);
+            textView.setTextSize(13);
             textView.setGravity(Gravity.CENTER_VERTICAL);
             textView.setPadding(100,0,0,0);
             return textView;
