@@ -4,6 +4,7 @@ package anglehack.grabngo;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -40,6 +42,16 @@ public class PickupFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if( requestCode == 1 )
+        {
+            pay.setText("Paid");
+            pay.setEnabled(false);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -62,7 +74,9 @@ public class PickupFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getView().getContext(), MolPay.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
+                //pay.setText("Paid");
+                pay.setEnabled(false);
             }
         });
         calculate.setOnClickListener(new View.OnClickListener() {
@@ -71,12 +85,32 @@ public class PickupFragment extends Fragment {
                 RetrieveShortestDistance task = new RetrieveShortestDistance();
                 originText = origin.getText().toString();
                 destinationText = destination.getText().toString();
-                //task.execute();
-                shortestDistance.setText( "21KM" );
-                estimatedArrival.setText(Request.calculateEstimatedArrival());
+                Toast.makeText(getView().getContext(), "Looking for nearby drivers, please wait", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.VISIBLE);
+                shortestDistance.setVisibility(View.INVISIBLE);
+                estimatedArrival.setVisibility(View.INVISIBLE);
+                result.setVisibility(View.INVISIBLE);
+                calculate.setEnabled(false);
+                Handler handler = new Handler();
 
-                result.setText( /*String.format("RM%.2f", Request.calculatePrice(distance) )*/ "RM12.45" );
-                pay.setVisibility(View.VISIBLE);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        shortestDistance.setVisibility(View.VISIBLE);
+                        estimatedArrival.setVisibility(View.VISIBLE);
+                        result.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getView().getContext(), "We have found you a driver!", Toast.LENGTH_SHORT).show();
+                        shortestDistance.setText( "21KM" );
+                        estimatedArrival.setText(Request.calculateEstimatedArrival());
+
+                        result.setText( /*String.format("RM%.2f", Request.calculatePrice(distance) )*/ "RM12.45" );
+                        pay.setVisibility(View.VISIBLE);
+                    }
+                }, 5000);
+
+                //task.execute();
+
             }
         });
     }
